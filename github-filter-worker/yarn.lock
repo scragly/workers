@@ -2,15 +2,6 @@
 # yarn lockfile v1
 
 
-"@cloudflare/workers-honeycomb-logger@^0.2.5":
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/@cloudflare/workers-honeycomb-logger/-/workers-honeycomb-logger-0.2.5.tgz#0eadd95cb8dfc0905580e1edb2670d6c017422d6"
-  integrity sha512-pCtvN4xMvmxRZGgGOAyKj6voSrn+aKbnr9rDUqMU3/lW/0wFgNgWMRiM1NAepiBRfyxMis+u9U8dpv9pIeL0VA==
-  dependencies:
-    "@cloudflare/workers-types" "^2.2.1"
-    "@types/uuid" "^8.3.0"
-    uuid "^8.3.2"
-
 "@cloudflare/workers-types@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-2.1.0.tgz#6e4f07567f4c914ad811c2d7a6172d0ae834c7f6"
