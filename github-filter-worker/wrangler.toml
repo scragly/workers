@@ -1,6 +1,6 @@
 name = "github-filter-worker"
 type = "webpack"
-account_id = "502aea548379e08369697540cc0bb0d1"
+account_id = "cbd313b3e8ac053c26cf5ab1b33c11c1"
 workers_dev = true
 route = ""
 zone_id = ""
