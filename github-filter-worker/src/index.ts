@@ -1,22 +1,8 @@
 import { Config, hc } from '@cloudflare/workers-honeycomb-logger';
 
-const hcConfig: Config = {
-  apiKey: HONEYCOMB_KEY,
-  dataset: "worker-discord-github-filter",
-  sampleRates: {
-    '2xx': 1,
-    '3xx': 1,
-    '4xx': 1,
-    '5xx': 1,
-    'exception': 1
-  }
-}
-
-const listener = hc(hcConfig, event => {
+addEventListener('fetch', (event) => {
   event.respondWith(handleRequest(event.request))
 })
-
-addEventListener('fetch', listener)
 
 export async function handleRequest(request: Request): Promise<Response> {
   // Don't apply any logic to non-POSTs.
