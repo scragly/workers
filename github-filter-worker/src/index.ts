@@ -10,21 +10,14 @@ export async function handleRequest(request: Request): Promise<Response> {
     )
   }
 
-
   // Clone the request so that when we read JSON we can still forward it on later.
   let json = await request.clone().json();
-
-  request.tracer.addData({
-    githubEvent: request.headers.get("X-GitHub-Event"),
-    sender: json.sender?.login
-  })
 
   // Check if username is like "joe[bot]" or coveralls.
   let isCoveralls = json.sender?.login?.indexOf("coveralls") !== -1;
   let isGitHubBot = json.sender?.login?.indexOf('[bot]') !== -1;
   let isDependabotBranchDelete = json.ref?.indexOf("dependabot") !== -1 && request.headers.get("X-GitHub-Event") === "delete";
   let isBotPRApprove = json.pull_request?.user?.login?.indexOf("[bot]") !== -1 && request.headers.get("X-GitHub-Event") === "pull_request_review";
-
   let isEmptyReview = (
     json.review?.state === "commented" &&
     request.headers.get("X-GitHub-Event") === "pull_request_review" &&
@@ -34,10 +27,7 @@ export async function handleRequest(request: Request): Promise<Response> {
   // Combine logic.
   let botPayload = isCoveralls || isGitHubBot || isDependabotBranchDelete || isBotPRApprove;
   let noisyUserActions = isEmptyReview;
-
   let shouldIgnore = botPayload || noisyUserActions;
-
-  request.tracer.addData({ botPayload, noisyUserActions, shouldIgnore });
 
   // If payload is not from a bot.
   if (!shouldIgnore) {
