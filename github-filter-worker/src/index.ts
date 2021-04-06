@@ -1,5 +1,3 @@
-import { Config, hc } from '@cloudflare/workers-honeycomb-logger';
-
 addEventListener('fetch', (event) => {
   event.respondWith(handleRequest(event.request))
 })
